@@ -27,7 +27,7 @@ def commands(phenny, input):
    phenny.say('Commands I recognise: ' + names + '.')
    phenny.say(("For help, do '%s: help example?' where example is the " + 
                "name of the command you want help for.") % phenny.nick)
-commands.commands = ['commands']
+commands.commands = ['commands', '!help']
 commands.priority = 'low'
 
 def help(phenny, input): 

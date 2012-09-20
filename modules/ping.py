@@ -27,3 +27,13 @@ def hello_world(phenny, input):
     phenny.say("Hello World!")
 hello_world.commands = ['hello']
 hello_world.priority = 'medium'
+
+
+def custom_commands(phenny, input):
+    if input.sender.startswith('#'): return
+    names = ', '.join(sorted(phenny.doc.iterkeys()))
+    phenny.say('Commands I recognise: ' + names + '.')
+    phenny.say(("For help, do '%s: help example?' where example is the " + 
+               "name of the command you want help for.") % phenny.nick)
+custom_commands.rule = r'!help $nickname'
+custom_commands.priority = 'low'
