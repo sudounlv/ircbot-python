@@ -15,9 +15,15 @@ hello.rule = r'(?i)(hi|hello|hey) $nickname[ \t]*$'
 
 def interjection(phenny, input): 
    phenny.say(input.nick + '!')
-interjection.rule = r'$nickname!'
+interjection.rule = r'$nickname!' # $nickname = global var for uer's nick for phenny
 interjection.priority = 'high'
 interjection.thread = False
 
 if __name__ == '__main__': 
    print __doc__.strip()
+
+
+def hello_world(phenny, input):
+    phenny.say("Hello World!")
+hello_world.commands = ['hello']
+hello_world.priority = 'medium'
