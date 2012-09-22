@@ -13,6 +13,19 @@ from tools import deprecated
 
 r_from = re.compile(r'(?i)([+-]\d+):00 from')
 
+def read_temperature(phenny, input):
+    urlName = 'http://weather.noaa.gov/weather/current/' + input.group(2) + '.html'
+    print urlName
+    remoteFile = urllib.urlopen(urlName)
+    fileContent = ''.join(remoteFile.readlines())
+    start = fileContent.find('Temperature')
+    while not ('0' <= fileContent[start] <= '9'): start = start + 1
+    stop = fileContent[start:].find(')')
+    print fileContent[start : start+stop+1]
+    phenny.say(fileContent[start : start+stop+1])
+read_temperature.commands = ['temp']
+read_temperature.example = '.temp KCVO'
+
 def location(name): 
    name = urllib.quote(name.encode('utf-8'))
    uri = 'http://ws.geonames.org/searchJSON?q=%s&maxRows=1' % name

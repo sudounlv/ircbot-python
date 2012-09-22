@@ -8,3 +8,6 @@ Enjoy!
 
 -- 
 Sean B. Palmer, http://inamidst.com/sbp/
+
+FOR SUDO STUDENTS:
+For questions about this repo/phenny/sudo, contact Jim Daniel @ jadaniel@zappos.com
