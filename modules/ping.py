@@ -44,18 +44,18 @@ custom_commands.priority = 'low'
 
 def last_five(phenny, input):
     if input.nick not in talkers:   # check to see if key exists in dict
-        q = Queue(maxsize=5)        # if not, create queue and add to dict
+        q = Queue.Queue(maxsize=5)        # if not, create queue and add to dict
         talkers[input.nick] = q
     temp_queue = talkers[input.nick]    # retrieve queue associated w/ nick
     if temp_queue.full():               # if full, get rid of last element
         temp_queue.get()
-    temp_queue.put(input.group(2))      # add to the FIFO queue
+    temp_queue.put(input.group())      # add to the FIFO queue
 last_five.event = 'PRIVMSG'
 last_five.rule = r'.*'
 
 def repeat_last_five(phenny, input):
     if input.nick in talkers:
-        temp_queue = talkers[input.group(2)]
+        temp_queue = talkers[input.nick]
         for elem in list(temp_queue.queue):
             phenny.say(elem)
     else: 
